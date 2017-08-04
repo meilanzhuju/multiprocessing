@@ -1,6 +1,7 @@
+
+import gevent
 from gevent import monkey
 monkey.patch_all()
-import gevent
 import urllib.request
 
 def run_task(url):
@@ -15,6 +16,6 @@ def run_task(url):
 if __name__ == "__main__":
 	urls = ['https://github.com/', 'https://python.org', 'http://www.cnblogs.com/']
 	greenlets = [gevent.spawn(run_task, url) for url in urls]
-	gevent.join(greenlets)
+	gevent.joinall(greenlets)
 	
 	
